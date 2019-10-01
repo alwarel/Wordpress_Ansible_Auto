@@ -1,0 +1,13 @@
+# Databases.
+mysql_databases: 
+   - name: Wordpress
+     collation: utf8_general_ci
+     encoding: utf8
+     replicate: 1
+
+# Users.
+mysql_users:
+    - name: Wordpress_user
+      host: "%"
+      password: secret
+      priv: "*.*:ALL,GRANT"

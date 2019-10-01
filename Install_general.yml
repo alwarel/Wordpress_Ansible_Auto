@@ -1,0 +1,15 @@
+- hosts: test
+  remote_user: ubuntu
+  become: yes
+  vars_files:
+     - vars/Apache.yml
+  roles:
+     - { role: apache }
+
+- hosts: db
+  remote_user: ubuntu
+  become: yes
+  vars_files:
+     - vars/Mysql.yml
+  roles:
+     - { role: mysql }
