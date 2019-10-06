@@ -1,0 +1,11 @@
+---
+- name: Extract Wordpress 5.2.3.tgz
+  unarchive:
+    src: https://fr.wordpress.org/wordpress-5.2.3-fr_FR.tar.gz
+    dest: "{{ item.website_folder }}"
+    owner: www-data
+    group: www-data
+    remote_src: yes
+  with_items: "{{ apache_vhosts }}"
+
+

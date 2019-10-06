@@ -1,10 +1,13 @@
-- hosts: test
+- hosts: web
   remote_user: ubuntu
   become: yes
-  vars_files:
-     - vars/Apache.yml
+  vars:
+    apache_vhosts:
+        documentroot: "/var/www/wordpress"
   roles:
-     - { role: apache }
+    - apache
+    - php
+    - apache-php-fpm
 
 - hosts: db
   remote_user: ubuntu
@@ -13,3 +16,12 @@
      - vars/Mysql.yml
   roles:
      - { role: mysql }
+
+- hosts: wordpress
+  remote_user: ubuntu
+  become: yes
+  vars_files:
+     - vars/Apache.yml
+     - vars/Mysql.yml
+  roles:
+     - { role: wordpress }

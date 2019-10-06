@@ -1,6 +1,6 @@
 # Databases.
 mysql_databases: 
-   - name: Wordpress
+   - name: wordpress
      collation: utf8_general_ci
      encoding: utf8
      replicate: 1
