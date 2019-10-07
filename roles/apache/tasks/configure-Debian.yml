@@ -58,3 +58,4 @@
      dest: "{{ item.documentroot }}/.htaccess"
      content: "order deny,allow\ndeny from all\nallow from 127.0.0.1"
   with_items: "{{ apache_vhosts }}"
+  when: htaccess
