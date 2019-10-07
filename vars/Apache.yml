@@ -4,5 +4,6 @@ htaccess: false
 apache_vhosts:
   - servername: "Wordpress"
     website_folder: "/var/www"
+    documentroot: "/var/www/wordpress"
     extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/wordpress"
