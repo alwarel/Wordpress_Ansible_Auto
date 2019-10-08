@@ -1,0 +1,19 @@
+---
+- name: Define mysql_users.
+  set_fact:
+      db_user: "{{ item.name }}"
+      db_pwd: "{{ item.password }}"
+  with_items: "{{ mysql_users }}"
+  when: db_user is not defined
+
+- name: Define mysql_databases.
+  set_fact:
+      db_name: "{{ item.name }}"
+  with_items: "{{ mysql_databases }}"
+  when: db_name is not defined
+
+- name: Define wp_var.
+  set_fact:
+      wordpress_unarchived_path: "{{ item.documentroot }}"
+  with_items: "{{ apache_vhosts }}"
+  when: wordpress_unarchived_path is not defined

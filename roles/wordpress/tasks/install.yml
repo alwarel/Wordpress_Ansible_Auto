@@ -1,0 +1,20 @@
+- name: Extract Wordpress 5.2.3.tgz
+  unarchive:
+    src: https://fr.wordpress.org/wordpress-5.2.3-fr_FR.tar.gz
+    dest: "{{ item.website_folder }}"
+    owner: www-data
+    group: www-data
+    remote_src: yes
+  with_items: "{{ apache_vhosts }}"
+
+- name: "Installation de Wordpress"
+  wordpress_install:
+    web_host: "{{ansible_host}}"
+    db_name: "{{db_name}}"
+    db_user: "{{db_user}}"
+    db_pwd: "{{db_pwd}}"
+    db_host: "{{db_host}}"
+    site_name: "{{name_site}}"
+    site_user: "{{site_user}}"
+    site_pass: "{{site_pass}}"
+  no_log: true
