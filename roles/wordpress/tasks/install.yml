@@ -1,11 +1,23 @@
+
+- name: Check if SElinux is installed
+  command: command -v chcon >/dev/null 2>&1
+  register: is_selinux_exists
+  ignore_errors: yes
+
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
 - name: Extract Wordpress 5.2.3.tgz
   unarchive:
     src: https://fr.wordpress.org/wordpress-5.2.3-fr_FR.tar.gz
     dest: "{{ item.website_folder }}"
-    owner: www-data
-    group: www-data
+    owner: "{{ pool_user }}"
+    group: "{{ pool_group }}"
     remote_src: yes
   with_items: "{{ apache_vhosts }}"
+
+- name: Allow SElinux (Wordpress rw)
+  command: chcon -t httpd_sys_rw_content_t {{ wordpress_unarchived_path }} -R
+  when: is_selinux_exists
 
 - name: "Installation de Wordpress"
   wordpress_install:
@@ -14,7 +26,7 @@
     db_user: "{{db_user}}"
     db_pwd: "{{db_pwd}}"
     db_host: "{{db_host}}"
-    site_name: "{{name_site}}"
+    site_name: "{{site_name}}"
     site_user: "{{site_user}}"
     site_pass: "{{site_pass}}"
   no_log: true

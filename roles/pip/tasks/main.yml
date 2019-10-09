@@ -1,4 +1,10 @@
 ---
+
+- name: Ensure epel-release is installed.
+  package:
+    name: epel-release
+    state: present
+
 - name: Ensure Pip is installed.
   package:
     name: "{{ pip_package }}"

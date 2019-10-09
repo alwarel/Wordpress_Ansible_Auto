@@ -1,4 +1,11 @@
 ---
+- name: epel-release
+  yum: name=epel-release state=installed
+
+- name: Add repository 'remi-repo'
+  command: rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+
 - name: Ensure PHP packages are installed.
   package:
     name: "{{ php_packages }}"

@@ -31,5 +31,6 @@
   vars_files:
      - vars/Apache.yml
      - vars/Mysql.yml
+     - vars/Wordpress.yml
   roles:
      - wordpress

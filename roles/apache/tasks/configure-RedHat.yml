@@ -35,6 +35,12 @@
     - ansible_distribution_major_version | int >= 8
     - not localhost_cert.stat.exists
 
+
+- name: Allow httpd_can_network_connect_db #
+  command: setsebool -P httpd_can_network_connect_db 1
+  notify: restart apache
+
+
 - name: Create .htaccess
   copy:
      dest: "{{ item.documentroot }}/.htaccess"
