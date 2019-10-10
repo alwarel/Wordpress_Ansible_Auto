@@ -1,6 +1,6 @@
 # Wordpress_Ansible_Auto
 Ce rôle permet d'installer wordpress automatiquement sur des serveurs RedHat/CentOS ou Debian/Ubuntu.
-##Prérequis
+## Prérequis
 Pour que le rôle Wordpress installe automatiquement Wordpress depuis un environnement fraîchement installé plusieurs rôles sont requis, ces rôles se trouvent dans le répertoire`roles`.
 - [ansible-role-apache](https://github.com/geerlingguy/ansible-role-apache) 
 - [ansible-role-php](https://github.com/geerlingguy/ansible-role-php) 
