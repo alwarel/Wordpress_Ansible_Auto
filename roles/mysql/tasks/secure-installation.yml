@@ -49,6 +49,7 @@
     ((mysql_install_packages | bool) or mysql_root_password_update)
     and ('5.7.' in mysql_cli_version.stdout or '8.0.' in mysql_cli_version.stdout)
 
+
 # Set root password for MySQL < 5.7.x.
 - name: Update MySQL root password for localhost root account (< 5.7.x).
   shell: >
@@ -69,11 +70,13 @@
     mode: 0600
   when: mysql_install_packages | bool or mysql_root_password_update
 
+
 - name: Get list of hosts for the anonymous user.
   command: mysql -NBe 'SELECT Host FROM mysql.user WHERE User = ""'
   register: mysql_anonymous_hosts
   changed_when: false
   check_mode: false
+
 
 - name: Remove anonymous MySQL users.
   mysql_user:
@@ -81,6 +84,7 @@
     host: "{{ item }}"
     state: absent
   with_items: "{{ mysql_anonymous_hosts.stdout_lines|default([]) }}"
+
 
 - name: Remove MySQL test database.
   mysql_db: "name='test' state=absent"

@@ -7,13 +7,6 @@
     - php
     - php-fpm
 
-- hosts: db
-  become: yes
-  vars_files:
-     - vars/Mysql.yml
-  roles:
-     - mysql 
-
 - hosts: wordpress
   become: yes
   vars:
@@ -21,6 +14,15 @@
        - name: requests
   roles:
     - pip
+
+- hosts: db
+  become: yes
+  vars_files:
+     - vars/Mysql.yml
+  roles:
+     - mysql 
+
+
 
 - hosts: wordpress
   become: yes

@@ -17,3 +17,5 @@
       wordpress_unarchived_path: "{{ item.documentroot }}"
   with_items: "{{ apache_vhosts }}"
   when: wordpress_unarchived_path is not defined
+
+

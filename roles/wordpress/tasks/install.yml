@@ -1,8 +1,8 @@
 
 - name: Check if SElinux is installed
-  command: command -v chcon >/dev/null 2>&1
+  stat:
+    path: /bin/chcon
   register: is_selinux_exists
-  ignore_errors: yes
 
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
@@ -17,7 +17,7 @@
 
 - name: Allow SElinux (Wordpress rw)
   command: chcon -t httpd_sys_rw_content_t {{ wordpress_unarchived_path }} -R
-  when: is_selinux_exists == False
+  when: is_selinux_exists.stat.exists == True
 
 - name: "Installation de Wordpress"
   wordpress_install:
@@ -29,4 +29,4 @@
     site_name: "{{site_name}}"
     site_user: "{{site_user}}"
     site_pass: "{{site_pass}}"
-  no_log: true
+  no_log: false
