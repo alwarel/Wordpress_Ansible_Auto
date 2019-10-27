@@ -47,3 +47,11 @@ Les variables sont récupérées dans`vars/Mysql.yml`:
 
     [wordpress]
 	<ip-web-host> site_name=nomdusite db_host=<ip-bdd-host>
+## License
+MIT / BSD
+
+Les rôles ci dessous appartiennent à [Jeff Gerling :](https://github.com/geerlingguy)
+- [ansible-role-apache](https://github.com/geerlingguy/ansible-role-apache) 
+- [ansible-role-php](https://github.com/geerlingguy/ansible-role-php) 
+- [ansible-role-apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm) 
+- [ansible-role-mysql](https://github.com/geerlingguy/ansible-role-mysql) 
